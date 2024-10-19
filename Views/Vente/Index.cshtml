@@ -1,0 +1,182 @@
+﻿@* @model List<StationWeb.Controllers.Compte> *@
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+.form-container {
+    margin-bottom: 100px;
+}
+</style>
+
+
+<div class="text-center form-container">
+    <h1 class="display-4">Welcome</h1>
+    
+    <form method="post" action="/Home/Enregistrer">
+        <div class="form-group row">
+            <label for="designation" class="col-sm-2 col-form-label">Désignation</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="designation" name="designation" placeholder="Entrer la désignation">
+            </div>
+        </div>
+        
+        <div class="form-group row">
+            <label for="date" class="col-sm-2 col-form-label">Date</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" id="date" name="date">
+            </div>
+        </div>
+        
+        <div class="form-group row">
+            <label for="remarque" class="col-sm-2 col-form-label">Remarque</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="remarque" name="remarque" placeholder="Entrer une remarque">
+            </div>
+        </div>
+        
+        <div class="form-group row">
+            <label for="client" class="col-sm-2 col-form-label">Client</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="client" name="client" placeholder="Nom du client">
+            </div>
+        </div>
+    </form>
+
+    <div class="text-center">
+    
+    <form method="post" action="/Home/Enregistrer">
+        <table class="table table-bordered" id="data-table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Produit</th>
+                    <th scope="col">Désignation</th>
+                    <th scope="col">Compte</th>
+                    <th scope="col">Quantité</th>
+                    <th scope="col">PU</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="checkbox" name="selectRow" />
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="designation" placeholder="Entrer la désignation">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" name="designation" placeholder="Entrer la désignation" />
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="compte" placeholder="Entrer le compte">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <input type="number" class="form-control" name="quantite" placeholder="Quantité" />
+                    </td>
+                    <td>
+                        <input type="number" class="form-control" name="pu" placeholder="PU" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <button type="button" class="btn btn-secondary" id="add-row-btn">Ajouter une ligne</button>
+        <button type="button" class="btn btn-primary" id="combined-submit-btn">Enregistrer</button>
+            
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('combined-submit-btn').addEventListener('click', function (event) {
+        event.preventDefault(); // Empêche la soumission par défaut du formulaire
+
+        // Récupérer les données des deux formulaires
+        var form1 = document.querySelector('form[action="/Home/Enregistrer"]:first-of-type');
+        var form2 = document.querySelector('form[action="/Home/Enregistrer"]:last-of-type');
+
+        var formData = new FormData(form1);
+        new FormData(form2).forEach((value, key) => {
+            formData.append(key, value);
+        });
+
+        // Envoyer les données combinées via une requête AJAX
+        fetch('/Home/Enregistrer', {
+            method: 'POST',
+            body: formData
+        }).then(response => {
+            if (response.ok) {
+                alert('Données enregistrées avec succès');
+            } else {
+                alert('Erreur lors de l\'enregistrement des données');
+            }
+        }).catch(error => {
+            console.error('Erreur:', error);
+            alert('Erreur lors de l\'enregistrement des données');
+        });
+    });
+
+    // Gestionnaire pour ajouter une nouvelle ligne
+    document.body.addEventListener('click', function (event) {
+        if (event.target.id === 'add-row-btn' || event.target.closest('#add-row-btn')) {
+            var table = document.getElementById('data-table').getElementsByTagName('tbody')[0];
+            var newRow = table.insertRow();
+            
+            // Ajouter des cellules (td) à la nouvelle ligne
+            var cell1 = newRow.insertCell(0);
+            var cell2 = newRow.insertCell(1);
+            var cell3 = newRow.insertCell(2);
+            var cell4 = newRow.insertCell(3);
+            var cell5 = newRow.insertCell(4);
+            var cell6 = newRow.insertCell(5);
+            // Ajouter le contenu dans chaque cellule
+            cell1.innerHTML = '<input type="checkbox" name="selectRow" />';
+            cell2.innerHTML = `
+                <div class="input-group">
+                    <input type="text" class="form-control" name="produit" placeholder="Entrer le produit">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>`;
+            cell3.innerHTML = '<input type="text" class="form-control" name="designation" placeholder="Entrer la désignation" />';
+            cell4.innerHTML = `
+                <div class="input-group">
+                    <input type="text" class="form-control" name="compte" placeholder="Entrer le compte">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>`;
+            cell5.innerHTML = '<input type="number" class="form-control" name="quantite" placeholder="Quantité" />';
+            cell6.innerHTML = '<input type="number" class="form-control" name="pu" placeholder="PU" />';
+        }
+    });
+});
+</script>
+
+</div>
+
+<!-- Inclusion de Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- Inclusion de FontAwesome pour l'icône -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">

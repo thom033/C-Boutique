@@ -1,0 +1,236 @@
+- Accueil : 
+    - vente
+        - saisie
+            - mere 
+                - magasin 
+                - client 
+                - fille
+                    - produit 
+                        - type produit = boutique
+                    - quantite 
+                    - PU produit 
+        - liste 
+            - getAllVente 
+                afficherFactureMere
+                afficherFactureFille
+    - Etat de stock 
+        - liste avec select 2 dates 
+            - produit : 
+                - quantite dispo 
+                - quantite entree 
+                - quantite sortie 
+    - Chiffres de la boutique
+        - classe 7
+        - classe 6
+        - benefice 
+        - dettecreance  
+
+ desc produit;
+ Nom                                       NULL ?   Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL VARCHAR2(255)
+ VAL                                                VARCHAR2(255)
+ DESCE                                              VARCHAR2(255)
+ IDTYPEPRODUIT                                      VARCHAR2(255)
+ PUACHAT                                            NUMBER(30,2)
+ PUVENTE                                            NUMBER(30,2)
+ IDUNITE                                            VARCHAR2(255)
+ IDCATEGORIE                                        VARCHAR2(255)
+ IDSOUSCATEGORIE                                    VARCHAR2(100)
+ PRESENTATION                                       VARCHAR2(500)
+ SEUILMIN                                           NUMBER(30,2)
+ SEUILMAX                                           NUMBER(30,2)
+ PUACHATUSD                                         NUMBER(30,2)
+ PUACHATEURO                                        NUMBER(30,2)
+ PUACHATAUTREDEVISE                                 NUMBER(30,2)
+ PUVENTEUSD                                         NUMBER(30,2)
+ PUVENTEEURO                                        NUMBER(30,2)
+ PUVENTEAUTREDEVISE                                 NUMBER(30,2)
+ ISACHAT                                            NUMBER(30)
+ ISVENTE                                            NUMBER(30)
+
+SQL> desc type_produit;
+ Nom                                       NULL ?   Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL VARCHAR2(255)
+ VAL                                                VARCHAR2(255)
+ DESCE                                              VARCHAR2(255)
+
+SQL> desc unite;
+ Nom                                       NULL ?   Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL VARCHAR2(255)
+ VAL                                                VARCHAR2(255)
+ DESCE                                              VARCHAR2(255)
+
+SQL> desc categorie;
+ Nom                                       NULL ?   Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL VARCHAR2(255)
+ VAL                                                VARCHAR2(255)
+ DESCE                                              VARCHAR2(255)
+ IDTYPEPRODUIT                                      VARCHAR2(255)
+ COMPTE_VENTE                                       VARCHAR2(100)
+ COMPTE_ACHAT                                       VARCHAR2(100)
+
+ desc souscategorie;
+ Nom                                       NULL ?   Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL VARCHAR2(44)
+ VAL                                                VARCHAR2(250)
+ DESCE                                              VARCHAR2(250)
+
+ desc vente;
+ Nom                                       NULL ?   Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL VARCHAR2(255)
+ DESIGNATION                                        VARCHAR2(255)
+ IDMAGASIN                                 NOT NULL VARCHAR2(255)
+ DATY                                      NOT NULL DATE
+ REMARQUE                                           VARCHAR2(255)
+ ETAT                                               NUMBER(38)
+ IDORIGINE                                          VARCHAR2(255)
+ IDCLIENT                                           VARCHAR2(100)
+ ESTPREVU                                           NUMBER(1)
+ DATYPREVU                                          DATE
+
+SQL> desc vente_details_saisie;
+ Nom                                       NULL ?   Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL VARCHAR2(255)
+ IDVENTE                                            VARCHAR2(255)
+ IDPRODUIT                                          VARCHAR2(255)
+ DESIGNATION                                        VARCHAR2(250)
+ IDORIGINE                                          VARCHAR2(255)
+ QTE                                                NUMBER(38)
+ PU                                                 NUMBER(30,2)
+ REMISE                                             NUMBER(30,2)
+ TVA                                                NUMBER(30,2)
+ PUACHAT                                            NUMBER(30,2)
+ PUVENTE                                            NUMBER(30,2)
+ IDDEVISE                                           VARCHAR2(100)
+ TAUXDECHANGE                                       NUMBER(30,2)
+ COMPTE                                             VARCHAR2(255)
+
+desc etatstock;
+ Nom                                       NULL ?   Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL VARCHAR2(255)
+ IDPRODUIT                                          VARCHAR2(255)
+ IDMAGASIN                                          VARCHAR2(255)
+ IDPOINT                                            VARCHAR2(255)
+ IDTYPEPRODUIT                                      VARCHAR2(255)
+ IDUNITE                                            VARCHAR2(255)
+ REPORT                                             NUMBER(38)
+ ENTREE                                             NUMBER(38)
+ SORTIE                                             NUMBER(38)
+ RESTE                                              NUMBER(38)
+ DATY                                               DATE
+
+ desc compta_sous_ecriture;
+ Nom                                       NULL ?   Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL VARCHAR2(50)
+ COMPTE                                             VARCHAR2(50)
+ DEBIT                                              NUMBER(20,2)
+ CREDIT                                             NUMBER(20,2)
+ REMARQUE                                           VARCHAR2(250)
+ LIBELLEPIECE                                       VARCHAR2(250)
+ IDMERE                                             VARCHAR2(50)
+ REFERENCE_ENGAGEMENT                               VARCHAR2(50)
+ COMPTE_AUX                                         VARCHAR2(50)
+ LETTRAGE                                           VARCHAR2(50)
+ JOURNAL                                            VARCHAR2(50)
+ EXERCICE                                           NUMBER
+ ETAT                                               NUMBER
+ DATY                                               DATE
+ FOLIO                                              VARCHAR2(50)
+ ANALYTIQUE                                         VARCHAR2(50)
+ SOURCE                                             VARCHAR2(250)
+
+SQL> desc compta_ecriture;
+ Nom                                       NULL ?   Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL VARCHAR2(50)
+ DATY                                               DATE
+ DATECOMPTABLE                                      DATE
+ EXERCICE                                           NUMBER(20,2)
+ DESIGNATION                                        VARCHAR2(500)
+ REMARQUE                                           VARCHAR2(500)
+ ETAT                                               NUMBER(38)
+ HORSEXERCICE                                       NUMBER
+ JOURNAL                                   NOT NULL VARCHAR2(50)
+ OD                                                 VARCHAR2(50)v
+ ORIGINE                                            VARCHAR2(50)
+ CREDIT                                             NUMBER(20,2)
+ DEBIT                                              NUMBER(20,2)
+ IDUSER                                             VARCHAR2(50)
+ PERIODE                                            VARCHAR2(50)
+ TRIMESTRE                                          NUMBER
+ ANNEE                                              NUMBER
+ IDOBJET                                            VARCHAR2(50)
+
+
+
+vente saisie : 
+    Designation text designation
+    Date date daty
+    Remarque text remarque
+    Client text avec suggestion client
+
+    vente details saisie : 
+        Produit text produit[] avec suggestion
+        quantite number quantite[] 
+
+    => fonctions : 
+        - getListeClients
+        - getListeProduits avec details (join)
+        - insertMereAjouterFillesVente 
+            - Return Vente & List VenteDetailsSaisie
+            - creer Facture
+Affichage Facture 
+    - ID
+    - designation
+    - Magasin 
+    - Date
+    - Remarque 
+    - Etat
+    - Montant HTVA
+    - Devise 
+    - Client 
+    - Montant TTC 
+
+    Details 
+        - id	
+        - Désignation	
+        - Quantité	
+        - PU	
+        - Devise	
+        - Taux	
+        - TVA(en %)	
+        - remise	
+        - montant
+    
+    => Fonctions : 
+        - getFactureByidVente
+        - getVenteDetailsByIdVente
+        - encaisserVenteFacture 
+        - viserFactureVente
+
+Liste ventes :
+    - dateDebut date dateDebut 
+    - dateFin date dateFin
+    - tableau : 
+        - id
+        - designation
+        - client 
+        - devise 
+        - date 
+        - montant 
+        - etat 
+
+
+
+
+
+
