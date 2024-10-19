@@ -60,11 +60,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\S5\\Netbeans\\StationBoutique\\StationBoutique.csproj",
+      "projectUniqueName": "E:\\S5\\Prog\\Git\\C-Boutique\\StationBoutique.csproj",
       "projectName": "StationBoutique",
-      "projectPath": "E:\\S5\\Netbeans\\StationBoutique\\StationBoutique.csproj",
+      "projectPath": "E:\\S5\\Prog\\Git\\C-Boutique\\StationBoutique.csproj",
       "packagesPath": "C:\\Users\\itu\\.nuget\\packages\\",
-      "outputPath": "E:\\S5\\Netbeans\\StationBoutique\\obj\\",
+      "outputPath": "E:\\S5\\Prog\\Git\\C-Boutique\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\itu\\AppData\\Roaming\\NuGet\\NuGet.Config"
