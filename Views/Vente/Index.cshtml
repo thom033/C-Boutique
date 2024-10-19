@@ -1,4 +1,4 @@
-﻿@* @model List<StationWeb.Controllers.Compte> *@
+﻿@model C_Boutique.Models.VenteDTO
 
 @{
     ViewData["Title"] = "Home Page";
@@ -14,7 +14,7 @@
 <div class="text-center form-container">
     <h1 class="display-4">Welcome</h1>
     
-    <form method="post" action="/Home/Enregistrer">
+    <form method="post" action="/Vente/InsertVente">
         <div class="form-group row">
             <label for="designation" class="col-sm-2 col-form-label">Désignation</label>
             <div class="col-sm-10">
@@ -42,11 +42,8 @@
                 <input type="text" class="form-control" id="client" name="client" placeholder="Nom du client">
             </div>
         </div>
-    </form>
 
-    <div class="text-center">
-    
-    <form method="post" action="/Home/Enregistrer">
+        
         <table class="table table-bordered" id="data-table">
             <thead>
                 <tr>
@@ -98,7 +95,6 @@
         
         <button type="button" class="btn btn-secondary" id="add-row-btn">Ajouter une ligne</button>
         <button type="button" class="btn btn-primary" id="combined-submit-btn">Enregistrer</button>
-            
     </form>
 </div>
 

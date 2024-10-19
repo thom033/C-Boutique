@@ -26,6 +26,25 @@ namespace StationWeb.Controllers
             var clients = JsonConvert.DeserializeObject<List<Client>>(response);
             return View(clients);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> InsertVente(VenteDTO vente)
+        {
+            string apiUrl = "http://localhost:8080/station/station/vente/creer";
+            var jsonContent = JsonConvert.SerializeObject(vente);
+            var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+            var response = await _httpClient.PostAsync(apiUrl, content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                // Gérer l'erreur
+                return View("Error");
+            }
+        }
         
         
     }
