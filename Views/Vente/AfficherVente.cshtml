@@ -1,0 +1,77 @@
+@model Vente
+
+@{
+    ViewBag.Title = "Détails de la Vente";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <h3>Informations sur la vente</h3>
+    <table class="table">
+        <tr>
+            <th>ID Vente</th>
+            <td>@Model.id</td>
+        </tr>
+        <tr>
+            <th>Désignation</th>
+            <td>@Model.designation</td>
+        </tr>
+        <tr>
+            <th>Magasin</th>
+            <td>@Model.idMagasin</td>
+        </tr>
+        
+        <tr>
+            <th>Remarque</th>
+            <td>@Model.remarque</td>
+        </tr>
+        <tr>
+            <th>État</th>
+            <td>@Model.etat</td>
+        </tr>
+        <tr>
+            <th>ID Client</th>
+            <td>@Model.idClient</td>
+        </tr>
+        <tr>
+            <th>Prévue</th>
+            <td>@Model.estPrevu</td>
+        </tr>
+    </table>
+</div>
+
+<hr />
+
+<div>
+    <h3>Détails des produits</h3>
+    
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>ID Produit</th>
+                    <th>Designation</th>
+                    <th>Quantité</th>
+                    <th>Prix Unitaire</th>
+                    <th>Prix d'Achat</th>
+                    <th>Prix de Vente</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var detail in Model.venteDetails)
+                {
+                    <tr>
+                        <td>@detail.id</td>
+                        <td>@detail.idProduit</td>
+                        <td>@detail.designation</td>
+                        <td>@detail.qte</td>
+                        <td>@detail.pu</td>
+                        <td>@detail.puAchat</td>
+                        <td>@detail.puVente</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    
+</div>

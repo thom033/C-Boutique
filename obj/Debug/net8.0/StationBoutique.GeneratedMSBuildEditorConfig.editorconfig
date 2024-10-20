@@ -9,59 +9,95 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = StationBoutique
 build_property.RootNamespace = StationBoutique
-build_property.ProjectDir = E:\S5\Prog\Git\C-Boutique\
+build_property.ProjectDir = C:\Users\user\Documents\S5\ARCHITECTURE_LOGICIEL\C#\C-Boutique\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = E:\S5\Prog\Git\C-Boutique
+build_property.MSBuildProjectDirectory = C:\Users\user\Documents\S5\ARCHITECTURE_LOGICIEL\C#\C-Boutique
 build_property._RazorSourceGeneratorDebug = 
 
-[E:/S5/Prog/Git/C-Boutique/Views/Client/Index.cshtml]
+[C:/Users/user/Documents/S5/ARCHITECTURE_LOGICIEL/C\#/C-Boutique/Views/Client/ClientIdResult.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XENsaWVudElkUmVzdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Documents/S5/ARCHITECTURE_LOGICIEL/C\#/C-Boutique/Views/Client/ClientNameResult.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XENsaWVudE5hbWVSZXN1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Documents/S5/ARCHITECTURE_LOGICIEL/C\#/C-Boutique/Views/Client/ClientSuggestions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XENsaWVudFN1Z2dlc3Rpb25zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Documents/S5/ARCHITECTURE_LOGICIEL/C\#/C-Boutique/Views/Client/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/S5/Prog/Git/C-Boutique/Views/Home/Index.cshtml]
+[C:/Users/user/Documents/S5/ARCHITECTURE_LOGICIEL/C\#/C-Boutique/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/S5/Prog/Git/C-Boutique/Views/Home/Privacy.cshtml]
+[C:/Users/user/Documents/S5/ARCHITECTURE_LOGICIEL/C\#/C-Boutique/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/S5/Prog/Git/C-Boutique/Views/Products/Create.cshtml]
+[C:/Users/user/Documents/S5/ARCHITECTURE_LOGICIEL/C\#/C-Boutique/Views/Products/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/S5/Prog/Git/C-Boutique/Views/Products/Index.cshtml]
+[C:/Users/user/Documents/S5/ARCHITECTURE_LOGICIEL/C\#/C-Boutique/Views/Products/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/S5/Prog/Git/C-Boutique/Views/Shared/Error.cshtml]
+[C:/Users/user/Documents/S5/ARCHITECTURE_LOGICIEL/C\#/C-Boutique/Views/Produit/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVpdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Documents/S5/ARCHITECTURE_LOGICIEL/C\#/C-Boutique/Views/Produit/ProduitIdResult.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVpdFxQcm9kdWl0SWRSZXN1bHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Documents/S5/ARCHITECTURE_LOGICIEL/C\#/C-Boutique/Views/Produit/ProduitNameResult.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVpdFxQcm9kdWl0TmFtZVJlc3VsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Documents/S5/ARCHITECTURE_LOGICIEL/C\#/C-Boutique/Views/Produit/ProduitSuggestions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVpdFxQcm9kdWl0U3VnZ2VzdGlvbnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Documents/S5/ARCHITECTURE_LOGICIEL/C\#/C-Boutique/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/S5/Prog/Git/C-Boutique/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/user/Documents/S5/ARCHITECTURE_LOGICIEL/C\#/C-Boutique/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/S5/Prog/Git/C-Boutique/Views/Vente/Facture.cshtml]
+[C:/Users/user/Documents/S5/ARCHITECTURE_LOGICIEL/C\#/C-Boutique/Views/Vente/AfficherVente.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVudGVcQWZmaWNoZXJWZW50ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Documents/S5/ARCHITECTURE_LOGICIEL/C\#/C-Boutique/Views/Vente/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVudGVcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/user/Documents/S5/ARCHITECTURE_LOGICIEL/C\#/C-Boutique/Views/Vente/Facture.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVudGVcRmFjdHVyZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/S5/Prog/Git/C-Boutique/Views/Vente/Index.cshtml]
+[C:/Users/user/Documents/S5/ARCHITECTURE_LOGICIEL/C\#/C-Boutique/Views/Vente/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmVudGVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/S5/Prog/Git/C-Boutique/Views/_ViewImports.cshtml]
+[C:/Users/user/Documents/S5/ARCHITECTURE_LOGICIEL/C\#/C-Boutique/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/S5/Prog/Git/C-Boutique/Views/_ViewStart.cshtml]
+[C:/Users/user/Documents/S5/ARCHITECTURE_LOGICIEL/C\#/C-Boutique/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/S5/Prog/Git/C-Boutique/Views/Shared/_Layout.cshtml]
+[C:/Users/user/Documents/S5/ARCHITECTURE_LOGICIEL/C\#/C-Boutique/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-9l1k05ookh

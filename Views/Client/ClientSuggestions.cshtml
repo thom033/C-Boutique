@@ -1,0 +1,26 @@
+@model List<string>
+
+<h2>Suggestions de Clients</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="name">Nom du Client</label>
+        <input type="text" name="name" id="name" class="form-control" placeholder="Entrer un nom" />
+    </div>
+    <button type="submit" class="btn btn-primary">Rechercher</button>
+</form>
+
+@if (Model != null && Model.Count > 0)
+{
+    <h3>Suggestions :</h3>
+    <ul>
+        @foreach (var client in Model)
+        {
+            <li>@client</li>
+        }
+    </ul>
+}
+else
+{
+    <p>Aucune suggestion trouvée.</p>
+}

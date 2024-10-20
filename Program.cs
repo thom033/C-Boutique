@@ -1,25 +1,35 @@
+using C_Boutique.Models;
+
 var builder = WebApplication.CreateBuilder(args);
-
-// Ajouter les services nécessaires pour MVC
-builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient();
-var app = builder.Build();
+        // Enregistrer le service ClientService
+        builder.Services.AddScoped<ClientService>();
+        builder.Services.AddScoped<ProduitService>();
 
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();
-}
+        // Enregistrer d'autres services et les contrôleurs
+        builder.Services.AddControllersWithViews();
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
+        var app = builder.Build();
 
-app.UseRouting();
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseDeveloperExceptionPage();
+        }
+        else
+        {
+            app.UseExceptionHandler("/Home/Error");
+            app.UseHsts();
+        }
 
-app.UseAuthorization();
+        app.UseHttpsRedirection();
+        app.UseStaticFiles();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+        app.UseRouting();
 
-app.Run();
+        app.UseAuthorization();
+
+        app.MapControllerRoute(
+            name: "default",
+            pattern: "{controller=Home}/{action=Index}/{id?}");
+
+        app.Run();
