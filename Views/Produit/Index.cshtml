@@ -1,6 +1,6 @@
-@model List<C_Boutique.Models.Client>
+@model List<C_Boutique.Models.Produit>
 
-<h2>Liste des Clients</h2>
+<h2>Liste des Produits</h2>
 <table class="table">
     <thead>
         <tr>
@@ -9,11 +9,11 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var client in Model)
+        @foreach (var produit in Model)
         {
             <tr>
-                <td>@client.Id</td>
-                <td>@client.Nom</td>
+                <td>@produit.Id</td>
+                <td>@produit.Val</td>
             </tr>
         }
     </tbody>

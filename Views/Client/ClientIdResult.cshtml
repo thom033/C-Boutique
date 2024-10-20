@@ -1,0 +1,12 @@
+@model string
+
+<h2>ID du Client</h2>
+
+@if (Model != null)
+{
+    <p>Client trouvé ! Son ID est : @Model</p>
+}
+else
+{
+    <p>Client non trouvé.</p>
+}

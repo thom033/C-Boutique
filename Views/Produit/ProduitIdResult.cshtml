@@ -1,0 +1,12 @@
+@model string
+
+<h2>ID du Produit</h2>
+
+@if (Model != null)
+{
+    <p>Produit trouvé ! Son ID est : @Model</p>
+}
+else
+{
+    <p>Produit non trouvé.</p>
+}
