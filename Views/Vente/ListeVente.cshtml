@@ -1,0 +1,71 @@
+@model List<Vente>
+
+@{
+    ViewData["Title"] = "Liste des Ventes";
+}
+
+<div class="text-center form-container">
+    <h1 class="display-4">Liste des Ventes</h1>
+    
+    <!-- Formulaire avec les champs de date -->
+    <form method="post" action="/Vente/ListeVente">
+        <div class="row">
+            <div class="col-md-4">
+                <label for="dateDebut">Date Début</label>
+                <input type="date" id="dateDebut" name="dateDebut" class="form-control" />
+            </div>
+            <div class="col-md-4">
+                <label for="dateFin">Date Fin</label>
+                <input type="date" id="dateFin" name="dateFin" class="form-control" />
+            </div>
+            <div class="col-md-4 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary">Filtrer</button>
+            </div>
+        </div>
+    </form>
+        
+    <table class="table table-bordered mt-3" id="data-table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Désignation</th>
+                <th scope="col">Client</th>
+                <th scope="col">Montant Paye</th>
+                <th scope="col">Montant Depense</th>
+                <th scope="col">État</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var vente in Model)
+            {
+                <tr>
+                    <td>@vente.id</td>
+                    <td>@vente.designation</td>
+                    <td>@vente.idClient</td>
+                    <td>@vente.CalculerMontantTotalPaye()</td>
+                    <td>@vente.CalculerDepensesTotales()</td>
+                    <td>
+                        @if (vente.etat == 1)
+                        {
+                            <span>Créée</span>
+                        }
+                        else if (vente.etat == 11)
+                        {
+                            <span>Visée</span>
+                        }
+                        else
+                        {
+                            <span>@vente.etat</span> <!-- Afficher l'état brut si ce n'est ni 1 ni 11 -->
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Inclusion de Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- Inclusion de FontAwesome pour l'icône -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">

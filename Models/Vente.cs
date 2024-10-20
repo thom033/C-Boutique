@@ -15,4 +15,21 @@ public class Vente
     public DateTime? datyPrevu { get; set; }
     [JsonPropertyName("venteDetails")]
     public List<VenteDetails> venteDetails { get; set; }
+
+    public double CalculerMontantTotalPaye()
+    {
+        if (venteDetails == null || venteDetails.Count == 0)
+            return 0;
+
+        return venteDetails.Sum(vd => vd.pu * vd.qte);
+    }
+
+    // Calcul des dépenses totales (somme de puAchat * qte dans chaque VenteDetails)
+    public double CalculerDepensesTotales()
+    {
+        if (venteDetails == null || venteDetails.Count == 0)
+            return 0;
+
+        return venteDetails.Sum(vd => vd.puAchat * vd.qte);
+    }
 }

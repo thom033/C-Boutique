@@ -85,81 +85,74 @@ namespace C_Boutique.Controllers
         // }
 
         [HttpPost]
-[HttpPost]
-public async Task<IActionResult> InsertVente(string Designation, string Daty, string Remarque, string IdClient, 
-    List<string> Produits, List<double> Quantites, List<double> Pu, List<double> PuAchat, List<double> PuVente)
-{
-    // Initialisation de l'objet VenteDTO
-    var vente = new VenteDTO
-    {
-        idMagasin = "PHARM001",
-        designation = Designation,
-        daty = DateTime.Parse(Daty).ToString("yyyy-MM-dd"),
-        remarque = Remarque,
-        idClient = IdClient,
-        produits = new List<string>(),
-        quantites = new List<double>(),
-        pu = new List<double>(),
-        puAchat = new List<double>(),
-        puVente = new List<double>(),
-    };
-
-    // Remplissage des produits et quantités
-    for (int i = 0; i < Produits.Count; i++)
-    {
-        vente.produits.Add(Produits[i]);
-        vente.quantites.Add(Quantites[i]);
-        vente.pu.Add(Pu[i]);
-        vente.puAchat.Add(PuAchat[i]);
-        vente.puVente.Add(PuVente[i]);
-    }
-
-    Console.WriteLine(JsonConvert.SerializeObject(vente));
-
-    string apiUrl = "http://localhost:8080/station/station/vente/creer";
-    var jsonContent = JsonConvert.SerializeObject(vente);
-    var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-
-    try
-    {
-        var response = await _httpClient.PostAsync(apiUrl, content);
-
-        if (response.IsSuccessStatusCode)
+        public async Task<IActionResult> InsertVente(string Designation, string Daty, string Remarque, string IdClient, 
+            List<string> Produits, List<double> Quantites, List<double> Pu, List<double> PuAchat, List<double> PuVente)
         {
-            var jsonResponse = await response.Content.ReadAsStringAsync();
-            Console.WriteLine(jsonResponse);
+            // Initialisation de l'objet VenteDTO
+            var vente = new VenteDTO
+            {
+                idMagasin = "PHARM001",
+                designation = Designation,
+                daty = DateTime.Parse(Daty).ToString("yyyy-MM-dd"),
+                remarque = Remarque,
+                idClient = IdClient,
+                produits = new List<string>(),
+                quantites = new List<double>(),
+                pu = new List<double>(),
+                puAchat = new List<double>(),
+                puVente = new List<double>(),
+            };
 
-            // Désérialisation de la réponse en objet Vente
-            var venteCreee = JsonConvert.DeserializeObject<Vente>(jsonResponse);
-            Console.WriteLine(JsonConvert.SerializeObject(venteCreee));
+            // Remplissage des produits et quantités
+            for (int i = 0; i < Produits.Count; i++)
+            {
+                vente.produits.Add(Produits[i]);
+                vente.quantites.Add(Quantites[i]);
+                vente.pu.Add(Pu[i]);
+                vente.puAchat.Add(PuAchat[i]);
+                vente.puVente.Add(PuVente[i]);
+            }
 
-            // Stocker l'objet Vente et VenteDetails dans TempData
-            TempData["VenteCreee"] = JsonConvert.SerializeObject(venteCreee);
+            Console.WriteLine(JsonConvert.SerializeObject(vente));
 
-            // Rediriger vers l'action "AfficherVente"
-            TempData["SuccessMessage"] = "Vente créée avec succès";
-            return RedirectToAction("AfficherVente");
+            string apiUrl = "http://localhost:8080/station/station/vente/creer";
+            var jsonContent = JsonConvert.SerializeObject(vente);
+            var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+            try
+            {
+                var response = await _httpClient.PostAsync(apiUrl, content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var jsonResponse = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine(jsonResponse);
+
+                    // Désérialisation de la réponse en objet Vente
+                    var venteCreee = JsonConvert.DeserializeObject<Vente>(jsonResponse);
+                    Console.WriteLine(JsonConvert.SerializeObject(venteCreee));
+
+                    // Stocker l'objet Vente et VenteDetails dans TempData
+                    TempData["VenteCreee"] = JsonConvert.SerializeObject(venteCreee);
+
+                    // Rediriger vers l'action "AfficherVente"
+                    TempData["SuccessMessage"] = "Vente créée avec succès";
+                    return RedirectToAction("AfficherVente");
+                }
+                else
+                {
+                    return StatusCode((int)response.StatusCode, await response.Content.ReadAsStringAsync());
+                }
+            }
+            catch (TaskCanceledException ex)
+            {
+                return StatusCode(408, "La requête a pris trop de temps à répondre.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Une erreur est survenue : " + ex.Message);
+            }
         }
-        else
-        {
-            return StatusCode((int)response.StatusCode, await response.Content.ReadAsStringAsync());
-        }
-    }
-    catch (TaskCanceledException ex)
-    {
-        return StatusCode(408, "La requête a pris trop de temps à répondre.");
-    }
-    catch (Exception ex)
-    {
-        return StatusCode(500, "Une erreur est survenue : " + ex.Message);
-    }
-}
-
-
-
-
-        
-
 
 
         [HttpGet]
@@ -178,8 +171,42 @@ public async Task<IActionResult> InsertVente(string Designation, string Daty, st
             return View();
         }
 
+        [HttpGet]
+        public IActionResult ListeVente()
+        {
+            return View(new List<Vente>()); // Passe les ventes au modèle de la vue
+        }
 
-        
-        
+        [HttpPost]
+        public async Task<IActionResult> ListeVente(DateTime? dateDebut, DateTime? dateFin)
+        {
+            try
+            {
+                 string apiUrl = $"http://localhost:8080/station/station/vente/filter?idTypeProduit=TP00001&startDate={dateDebut?.ToString("yyyy-MM-dd")}&endDate={dateFin?.ToString("yyyy-MM-dd")}";
+
+                // Faire la requête HTTP GET vers l'API Java
+                var response = await _httpClient.GetAsync(apiUrl);
+
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return StatusCode((int)response.StatusCode, "Erreur lors de la récupération des ventes");
+                }
+
+                // Lire la réponse JSON
+                var jsonResponse = await response.Content.ReadAsStringAsync();
+
+                // Désérialiser la réponse JSON en une liste d'objets Vente
+                List<Vente> ventes = JsonConvert.DeserializeObject<List<Vente>>(jsonResponse);
+
+                // Retourner la vue avec les données des ventes
+                return View(ventes);
+            }
+            catch (Exception ex)
+            {
+                // Gestion des erreurs
+                return StatusCode(500, $"Erreur lors de la communication avec l'API Java: {ex.Message}");
+            }
+        }
     }
 }

@@ -1,0 +1,50 @@
+@model List<C_Boutique.Models.MvtStockProduitDTO>
+
+@{
+    ViewData["Title"] = "Etat de Stock";
+}
+
+<div class="text-center form-container">
+    <h1 class="display-4">Etat de Stock</h1>
+    
+    <form method="post" action="/Stock/Index">
+        <div class="row">
+            <div class="col-md-4">
+                <label for="dateDebut">Date Début</label>
+                <input type="date" id="dateDebut" name="dateDebut" class="form-control" />
+            </div>
+            <div class="col-md-4">
+                <label for="dateFin">Date Fin</label>
+                <input type="date" id="dateFin" name="dateFin" class="form-control" />
+            </div>
+            <div class="col-md-4 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary">Filtrer</button>
+            </div>
+        </div>
+    </form>
+    
+    <table class="table table-bordered mt-3" id="data-table">
+        <thead>
+            <tr>
+                <th scope="col">ID Produit</th>
+                <th scope="col">Pu Vente</th>
+                <th scope="col">Entree</th>
+                <th scope="col">Sortie</th>
+                <th scope="col">Pu Achat</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var produit in Model)
+            {
+                <tr>
+                    <td>@produit.IdProduit</td>
+                    <td>@produit.PuVente</td>
+                    <td>@produit.Entree</td>
+                    <td>@produit.Sortie</td>
+                    <td>@produit.PuAchat</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
