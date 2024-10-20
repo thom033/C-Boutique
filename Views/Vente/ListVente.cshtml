@@ -1,0 +1,45 @@
+﻿@model C_Boutique.Models.VenteDTO
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="text-center form-container">
+    <h1 class="display-4">Liste Vente</h1>
+        
+        <table class="table table-bordered" id="data-table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Désignation</th>
+                    <th scope="col">Client</th>
+                    <th scope="col">Devise</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Montant TTC</th>
+                    <th scope="col">Montant Payé</th>
+                    <th scope="col">Montant Restant</th>
+                    <th scope="col">État</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+</div>
+
+<!-- Inclusion de Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- Inclusion de FontAwesome pour l'icône -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
