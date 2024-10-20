@@ -25,6 +25,11 @@ namespace StationWeb.Controllers
             return View();
         }
 
+        public async Task<ViewResult> Facture()
+        {
+            return View();
+        }
+
         public async Task<IActionResult> InsertVente()
         {
             string apiUrl = "http://localhost:8080/station/station/vente/cree";
