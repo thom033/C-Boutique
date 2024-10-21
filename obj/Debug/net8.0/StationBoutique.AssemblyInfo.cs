@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("StationBoutique")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cbed05c4b8093655cb2cae5c062aa229e4058aae")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bfc4aacc7965c82afc50f5b18ebca3d3b5b391f2")]
 [assembly: System.Reflection.AssemblyProductAttribute("StationBoutique")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StationBoutique")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

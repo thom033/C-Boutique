@@ -1,31 +1,53 @@
-﻿@model C_Boutique.Models.VenteDTO
+@model List<C_Boutique.Models.Chiffre>
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Chiffres";
 }
-
 
 <div class="text-center form-container">
     <h1 class="display-4">Chiffres</h1>
-        
-        <table class="table table-bordered" id="data-table">
-            <thead>
-                <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">CA</th>
-                    <th scope="col">Depence</th>
-                    <th scope="col">Benefice</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+    
+    <!-- Form for filtering by date range -->
+    <form method="post" action="/Chiffre/Index">
+        <div class="row">
+            <div class="col-md-4">
+                <label for="dateDebut">Date Début</label>
+                <input type="date" id="dateDebut" name="dateDebut" class="form-control" />
+            </div>
+            <div class="col-md-4">
+                <label for="dateFin">Date Fin</label>
+                <input type="date" id="dateFin" name="dateFin" class="form-control" />
+            </div>
+            <div class="col-md-4 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary">Filtrer</button>
+            </div>
+        </div>
+    </form>
+    
+    <!-- Table displaying the list of chiffres -->
+    <table class="table table-bordered mt-3" id="data-table">
+        <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">CA (Chiffre d'Affaires)</th>
+                <th scope="col">Dépense</th>
+                <th scope="col">Bénéfice</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var chiffre in Model)
+                {
+                    <tr>
+                        <td>@chiffre.DateVente.ToString("yyyy-MM-dd")</td>
+                        <td>@chiffre.ChiffreAffaire?.ToString("C")</td>
+                        <td>@chiffre.TotalDepense?.ToString("C")</td>
+                        <td>@chiffre.Benefice?.ToString("C")</td>
+                    </tr>
+                }
+            }
+            
+        </tbody>
+    </table>
 </div>
 
 <!-- Inclusion de Bootstrap CSS -->

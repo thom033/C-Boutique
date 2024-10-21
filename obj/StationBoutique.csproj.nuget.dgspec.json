@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "E:\\S5\\Prog\\Git\\C-Boutique\\StationBoutique.csproj": {}
+    "C:\\Users\\user\\Documents\\S5\\ARCHITECTURE_LOGICIEL\\C#\\C-Boutique\\StationBoutique.csproj": {}
   },
   "projects": {
-    "E:\\S5\\Prog\\Git\\C-Boutique\\StationBoutique.csproj": {
+    "C:\\Users\\user\\Documents\\S5\\ARCHITECTURE_LOGICIEL\\C#\\C-Boutique\\StationBoutique.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\S5\\Prog\\Git\\C-Boutique\\StationBoutique.csproj",
+        "projectUniqueName": "C:\\Users\\user\\Documents\\S5\\ARCHITECTURE_LOGICIEL\\C#\\C-Boutique\\StationBoutique.csproj",
         "projectName": "StationBoutique",
-        "projectPath": "E:\\S5\\Prog\\Git\\C-Boutique\\StationBoutique.csproj",
-        "packagesPath": "C:\\Users\\itu\\.nuget\\packages\\",
-        "outputPath": "E:\\S5\\Prog\\Git\\C-Boutique\\obj\\",
+        "projectPath": "C:\\Users\\user\\Documents\\S5\\ARCHITECTURE_LOGICIEL\\C#\\C-Boutique\\StationBoutique.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\Documents\\S5\\ARCHITECTURE_LOGICIEL\\C#\\C-Boutique\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\itu\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

@@ -1,4 +1,6 @@
 ﻿@model C_Boutique.Models.VenteDTO
+@using C_Boutique.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
     ViewData["Title"] = "Home Page";
@@ -8,142 +10,110 @@
 .form-container {
     margin-bottom: 100px;
 }
+.suggestions {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    max-height: 150px;
+    overflow-y: auto;
+    position: absolute;
+    background-color: white;
+    z-index: 1000;
+}
+.suggestions div {
+    padding: 8px;
+    cursor: pointer;
+}
+.suggestions div:hover {
+    background-color: #f1f1f1;
+}
 </style>
-
 
 <div class="text-center form-container">
     <h1 class="display-4">Welcome</h1>
-    
+
     <form method="post" action="/Vente/InsertVente">
         <div class="form-group row">
-            <label for="designation" class="col-sm-2 col-form-label">Désignation</label>
+            <label for="Designation" class="col-sm-2 col-form-label">Désignation</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="designation" name="Designation" placeholder="Entrer la désignation">
-            </div>
-        </div>
-        
-        <div class="form-group row">
-            <label for="date" class="col-sm-2 col-form-label">Date</label>
-            <div class="col-sm-10">
-                <input type="date" class="form-control" id="date" name="Daty">
-            </div>
-        </div>
-        
-        <div class="form-group row">
-            <label for="remarque" class="col-sm-2 col-form-label">Remarque</label>
-            <div class="col-sm-10">
-                <input class="form-control" id="remarque" name="Remarque" placeholder="Entrer une remarque">
-            </div>
-        </div>
-        
-        <div class="form-group row">
-            <label for="client" class="col-sm-2 col-form-label">Client</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="client" name="IdClient" placeholder="Nom du client">
+                <input type="text" class="form-control" id="Designation" name="Designation" placeholder="Entrer la désignation" value="@Model.designation" required>
+
             </div>
         </div>
 
-        
+        <div class="form-group row">
+            <label for="Daty" class="col-sm-2 col-form-label">Date</label>
+            <div class="col-sm-10">
+                <input type="date" class="form-control" id="Daty" name="Daty" value="@Model.daty" required>
+
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="Remarque" class="col-sm-2 col-form-label">Remarque</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="Remarque" name="Remarque" placeholder="Entrer une remarque" value="@Model.remarque">
+
+            </div>
+        </div>
+
+       <div class="form-group row">
+            <label for="Client" class="col-sm-2 col-form-label">Client</label>
+            <div class="col-sm-10">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="Client" name="ClientName" placeholder="Nom du client" value="@Model.idClient" autocomplete="off" required>
+                    <input type="hidden" id="ClientId" name="IdClient" value="@Model.idClient" />
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="search-client-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div id="client-suggestions" class="suggestions"></div>
+
+            </div>
+        </div>
+
         <table class="table table-bordered" id="data-table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Produit</th>
-                    <th scope="col">Désignation</th>
-                    <th scope="col">Compte</th>
-                    <th scope="col">Quantité</th>
-                    <th scope="col">PU</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <input type="checkbox" name="selectRow" />
-                    </td>
-                    <td>
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="Produits" placeholder="Entrer la désignation">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </div>
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Produit</th>
+            <th scope="col">Quantité</th>
+            <th scope="col">PU</th>
+            <th scope="col">PU Achat</th>
+            <th scope="col">PU Vente</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (var i = 0; i < Model.produits.Count; i++)
+        {
+            <tr>
+                <td><input type="checkbox" name="SelectedRows" /></td>
+                <td>
+                    <div class="input-group">
+                        <input type="text" class="form-control produit-input" name="ProduitsName[@i]" placeholder="Entrer le produit" id="Produit-@i" value="@Model.produits[i]" autocomplete="off">
+                        <input type="hidden" id="ProduitId-@i" name="Produits[@i]" value="" /> <!-- Champ caché pour l'ID -->
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary search-produits-btn" type="button" id="search-produits-@i">
+                                <i class="fas fa-search"></i>
+                            </button>
                         </div>
-                    </td>
-                    <td>
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="compte" placeholder="Entrer le compte">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <input type="number" class="form-control" name="Quantites" placeholder="Quantité" />
-                    </td>
-                    <td>
-                        <input type="number" class="form-control" name="Pu" placeholder="PU" />
-                    </td>
-                    <td>
-                        <input type="number" class="form-control" name="PuAchat" placeholder="PU" />
-                    </td>
-                    <td>
-                        <input type="number" class="form-control" name="PuVente" placeholder="PU" />
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <button type="button" class="btn btn-secondary" id="add-row-btn">Ajouter une ligne</button>
-        <button type="submit" class="btn btn-primary" id="combined-submit-btn">Enregistrer</button>
-    </form>
-</div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    // Gestionnaire pour ajouter une nouvelle ligne
-    document.body.addEventListener('click', function (event) {
-        if (event.target.id === 'add-row-btn' || event.target.closest('#add-row-btn')) {
-            var table = document.getElementById('data-table').getElementsByTagName('tbody')[0];
-            var newRow = table.insertRow();
-            
-            // Ajouter des cellules (td) à la nouvelle ligne
-            var cell1 = newRow.insertCell(0);
-            var cell2 = newRow.insertCell(1);
-            var cell3 = newRow.insertCell(2);
-            var cell4 = newRow.insertCell(3);
-            var cell5 = newRow.insertCell(4);
-            var cell6 = newRow.insertCell(5);
-            // Ajouter le contenu dans chaque cellule
-            cell1.innerHTML = '<input type="checkbox" name="selectRow" />';
-            cell2.innerHTML = `
-                <div class="input-group">
-                    <input type="text" class="form-control" name="Produits" placeholder="Entrer le produit">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button">
-                            <i class="fas fa-search"></i>
-                        </button>
                     </div>
-                </div>`;
-            cell3.innerHTML = '<input type="text" class="form-control" name="designation" placeholder="Entrer la désignation" />';
-            cell4.innerHTML = `
-                <div class="input-group">
-                    <input type="text" class="form-control" name="compte" placeholder="Entrer le compte">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>`;
-            cell5.innerHTML = '<input type="number" class="form-control" name="Quantites" placeholder="Quantité" />';
-            cell6.innerHTML = '<input type="number" class="form-control" name="pu" placeholder="PU" />';
+                    <div class="suggestions suggestions-produits" id="suggestions-produits-@i"></div>
+                </td>
+                <td><input type="number" class="form-control" name="Quantites[@i]" placeholder="Quantité" value="@Model.quantites[i]" /></td>
+                <td><span id="Pu[@i]">0.00</span></td>
+                <td><span id="PuAchat[@i]">0.00</span></td>
+                <td><span id="PuVente[@i]">0.00</span></td>
+            </tr>
         }
-    });
-});
-</script>
+    </tbody>
+</table>
 
+
+        <button type="button" class="btn btn-secondary" id="add-row-btn">Ajouter une ligne</button>
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+    </form>
 </div>
 
 <!-- Inclusion de Bootstrap CSS -->
@@ -151,3 +121,130 @@ document.addEventListener('DOMContentLoaded', function () {
 
 <!-- Inclusion de FontAwesome pour l'icône -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    let rowIndex = @Model.produits.Count; // Initial rowIndex
+
+    // Ajouter une nouvelle ligne de produit
+    document.getElementById('add-row-btn').addEventListener('click', function () {
+        var table = document.getElementById('data-table').getElementsByTagName('tbody')[0];
+        var newRow = table.insertRow();
+        newRow.innerHTML = `
+            <td><input type="checkbox" name="SelectedRows" /></td>
+            <td>
+                <div class="input-group">
+                    <input type="text" class="form-control produit-input" id="ProduitsName[${rowIndex}]" name="ProduitsName[${rowIndex}]" placeholder="Entrer le produit" id="Produit-${rowIndex}" autocomplete="off">
+                    <input type="hidden" id="Produits[${rowIndex}]" name="Produits[${rowIndex}]" value="" /> <!-- Champ caché pour l'ID -->
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary search-produits-btn" type="button" id="search-produits-${rowIndex}">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="suggestions suggestions-produits" id="suggestions-produits-${rowIndex}"></div>
+            </td>
+            <td><input type="number" class="form-control" name="Quantites[${rowIndex}]" placeholder="Quantité" /></td>
+            <td><input type="number" class="form-control" name="Pu[${rowIndex}]" id="Pu[${rowIndex}]" placeholder="PU" /></td>
+            <td><input type="number" class="form-control" name="PuAchat[${rowIndex}]" id="PuAchat[${rowIndex}]" placeholder="PU Achat" /></td>
+            <td><input type="number" class="form-control" name="PuVente[${rowIndex}]" id="PuVente[${rowIndex}]" placeholder="PU Vente" /></td>
+        `;
+
+        // Déclencher l'ajout d'événements après une courte pause
+        setTimeout(function () {
+            // Ajouter le gestionnaire d'événements pour le bouton de recherche produit
+            const searchButton = newRow.querySelector('.search-produits-btn');
+            if (searchButton) {
+                searchButton.addEventListener('click', function () {
+                    const produitInput = newRow.querySelector('.produit-input');
+                    const query = produitInput.value.trim();
+                    if (query.length > 2) {
+                        fetchSuggestionsForProduit(query, newRow, rowIndex);
+                    }
+                });
+            } else {
+                console.error(`search-produits-${rowIndex} not found`);
+            }
+        }, 0); // Timeout à 0 pour s'assurer que l'ajout est bien terminé
+
+        rowIndex++; // Incrémenter rowIndex pour la prochaine ligne
+    });
+
+    // Ajouter le gestionnaire d'événement pour l'input client
+    const clientInput = document.getElementById('Client');
+    if (clientInput) {
+        clientInput.addEventListener('input', function () {
+            const query = clientInput.value.trim();
+            if (query.length > 2) {
+                fetchSuggestionsForClient(query);
+            } else {
+                document.getElementById('client-suggestions').innerHTML = ''; // Clear suggestions when input is too short
+                document.getElementById('client-suggestions').style.display = 'none';
+            }
+        });
+    }
+
+    // Fonction pour obtenir des suggestions pour le client
+     function fetchSuggestionsForClient(query) {
+        const suggestionsDiv = document.getElementById('client-suggestions');
+        fetch(`/Vente/GetClientsByNameSuggestionAsync?name=${query}`)
+            .then(response => response.json())
+            .then(clients => {
+                suggestionsDiv.innerHTML = '';
+                if (clients.length > 0) {
+                    clients.forEach(client => {
+                        const suggestionItem = document.createElement('div');
+                        suggestionItem.textContent = client.nom; // Assurez-vous que 'client' a une propriété 'name' et 'id'
+                        suggestionItem.onclick = function () {
+                            document.getElementById('Client').value = client.nom;
+                            document.getElementById('ClientId').value = client.id; // Remplir l'ID du client
+                            suggestionsDiv.innerHTML = ''; // Vider les suggestions
+                        };
+                        suggestionsDiv.appendChild(suggestionItem);
+                    });
+                    suggestionsDiv.style.display = 'block';
+                } else {
+                    suggestionsDiv.style.display = 'none';
+                }
+            });
+    }
+
+    function fetchSuggestionsForProduit(query, newRow, rowIndex) {
+        console.log(rowIndex);
+        const suggestionsDiv = newRow.querySelector('.suggestions-produits');
+        if (!suggestionsDiv) {
+            console.error(`Element with ID ${suggestionsDiv} not found`);
+            return;
+        }
+    
+        
+        fetch(`/Vente/GetProduitsByNameSuggestionAsync?name=${query}`)
+            .then(response => response.json())
+            .then(products => {
+                suggestionsDiv.innerHTML = '';
+                if (products.length > 0) {
+                    products.forEach(product => {
+                        const suggestionItem = document.createElement('div');
+                        suggestionItem.textContent = product.val; // Assurez-vous que 'product' a une propriété 'name' et 'id'
+                        suggestionItem.onclick = function () {
+                            document.getElementById(`ProduitsName[${rowIndex-1}]`).value = product.val;
+                            document.getElementById(`Produits[${rowIndex-1}]`).value = product.id; 
+                            document.getElementById(`Pu[${rowIndex-1}]`).value = product.pu;
+                            document.getElementById(`Pu[${rowIndex-1}]`).readOnly = true;
+                            document.getElementById(`PuAchat[${rowIndex-1}]`).value = product.puAchat;
+                            document.getElementById(`PuAchat[${rowIndex-1}]`).readOnly = true;
+                            document.getElementById(`PuVente[${rowIndex-1}]`).value = product.puVente;
+                            document.getElementById(`PuVente[${rowIndex-1}]`).readOnly = true;
+                            suggestionsDiv.innerHTML = ''; // Vider les suggestions
+                        };
+                        suggestionsDiv.appendChild(suggestionItem);
+                    });
+                    suggestionsDiv.style.display = 'block';
+                } else {
+                    suggestionsDiv.style.display = 'none';
+                }
+            });
+    }
+});
+
+</script>
